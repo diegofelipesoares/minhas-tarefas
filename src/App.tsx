@@ -1,11 +1,17 @@
-import React from "react"
+import EstiloGlobal, { Container } from "./styles"
+import BarraLateral from "./containers/BarraLateral"
+import ListaDeTarefas from "./containers/ListaDeTarefas"
 
 function App() {
   return (
-    <div className="App">
-      <h1>Bem vindo ao React com TypeScript</h1>
-      <h3>ESlint, Prettier, Editorconfig e Styled-components</h3>
-    </div>
+    <>
+      <EstiloGlobal />
+
+      <Container>
+        <BarraLateral />
+        <ListaDeTarefas />
+      </Container>
+    </>
   )
 }
 
