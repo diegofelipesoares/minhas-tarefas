@@ -14,7 +14,6 @@ class Tarefa{
     descricao: string,
     id: number
   ){
-
     this.titulo = titulo
     this.prioridade = prioridade
     this.status = status
