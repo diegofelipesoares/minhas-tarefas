@@ -8,7 +8,7 @@
 //TIPAGEM
   type FiltroState = {
     // é o que o usuário digitará no campo de busca
-    termo: string
+    termo?: string
     //critério de filtragem (filtrar por:)
     criterio: 'prioridade' | 'status' | 'todas'
     //Será preenchido pelo arquivo de Enums
@@ -32,11 +32,15 @@ const initialState: FiltroState = {
       alteraTermo: (state, action: PayloadAction<string>) => {
         //o atributo "termo" recebe dados do payload como tipo string.
         state.termo = action.payload
+      },
+      alterarFiltro: (state, action: PayloadAction<FiltroState>) => {
+        state.criterio = action.payload.criterio
+        state.valor = action.payload.valor
       }
     }
   })
 
-  //Exportando o action do slice
-  export const { alteraTermo } = filtroSlice.actions
+  //Exportando o actions do slice
+  export const { alteraTermo, alterarFiltro } = filtroSlice.actions
   //Exportando o reducer
   export default filtroSlice.reducer
