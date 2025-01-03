@@ -14,5 +14,8 @@ export const Lista = styled.li`
 export const ResumoFiltros = styled.p`
   margin: 16px 16px 16px 0;
   color: #fff;
-  font-weight: 400;
+
+`
+export const FiltroDestaque = styled.span`
+  font-weight: bold;
 `

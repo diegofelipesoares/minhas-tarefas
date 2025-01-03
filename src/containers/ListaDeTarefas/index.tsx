@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import Tarefa from "../../components/Tarefa"
-import { Container, Lista, ResumoFiltros } from "./styles"
+import { Container, FiltroDestaque, Lista, ResumoFiltros } from "./styles"
 import { RootReducer } from "../../store"
 import { eachItem } from 'ajv/dist/compile/util'
 
@@ -33,16 +33,26 @@ const ListaDeTarefas = () => {
     }
   }
 
+  const fTarefas = filtraTarefas()
+
   return (
       <Container>
-        <ResumoFiltros>2 tarefas marcadas como: "categoria" e {termo}</ResumoFiltros>
+        <ResumoFiltros>
+          {fTarefas.length} tarefas marcadas como: <FiltroDestaque> {criterio} {valor} </FiltroDestaque>
+          {termo && termo.length > 0 && (
+            <>
+              <br />
+              E termo de pesquisa: <FiltroDestaque>{termo}</FiltroDestaque>
+            </>
+          )}
+         </ResumoFiltros>
         <ul>
           <li>{termo}</li>
           <li>{criterio}</li>
           <li>{valor}</li>
         </ul>
         <ul>
-          {filtraTarefas().map((t) => (
+          {fTarefas.map((t) => (
             <Lista key={t.titulo}>
               <Tarefa
                 id={t.id}
