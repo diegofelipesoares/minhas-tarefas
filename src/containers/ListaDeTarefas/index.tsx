@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import Tarefa from "../../components/Tarefa"
-import { Container, FiltroDestaque, Lista, ResumoFiltros } from "./styles"
+import { MainContainer, FiltroDestaque, Lista, Titulo } from "../../styles"
 import { RootReducer } from "../../store"
 import { eachItem } from 'ajv/dist/compile/util'
 
@@ -36,8 +36,8 @@ const ListaDeTarefas = () => {
   const fTarefas = filtraTarefas()
 
   return (
-      <Container>
-        <ResumoFiltros>
+      <MainContainer>
+        <Titulo as="p">
           {fTarefas.length} tarefas marcadas como: <FiltroDestaque> {criterio} {valor} </FiltroDestaque>
           {termo && termo.length > 0 && (
             <>
@@ -45,7 +45,7 @@ const ListaDeTarefas = () => {
               E termo de pesquisa: <FiltroDestaque>{termo}</FiltroDestaque>
             </>
           )}
-         </ResumoFiltros>
+         </Titulo>
         <ul>
           <li>{termo}</li>
           <li>{criterio}</li>
@@ -64,7 +64,7 @@ const ListaDeTarefas = () => {
             </Lista>
           ))}
         </ul>
-      </Container>
+      </MainContainer>
   )
 }
 

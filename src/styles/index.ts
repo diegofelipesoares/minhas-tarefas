@@ -1,4 +1,7 @@
 import styled, { createGlobalStyle } from "styled-components";
+import { Botao } from "../components/Tarefa/styles";
+import variaveis from "./variaveis";
+
 
 const EstiloGlobal = createGlobalStyle`
 *{
@@ -13,6 +16,40 @@ export const Container = styled.div`
   display:grid;
   grid-template-columns: 224px auto;
   background-color: #125485;
+`
+//Estilo dos containers principais
+export const MainContainer = styled.main`
+  padding: 0 40px;
+  height: 100vh;
+  overflow-y: scroll;
+  background-color:rgb(106, 159, 200);
+`
+
+export const Lista = styled.li`
+  list-style: none;
+`
+
+export const Titulo = styled.h2`
+  margin: 16px 16px 16px 0;
+  color: #fff;
+
+`
+export const FiltroDestaque = styled.span`
+  font-weight: bold;
+`
+
+export const Campo = styled.input`
+  padding: 8px;
+  background-color: #fff;
+  border-radius: 8px;
+  font-weight: bold;
+  color: #666666;
+  border-color: #666666;
+  width: 100%;
+`
+
+export const BotaoSalvar = styled(Botao)`
+  background-color: ${variaveis.verde};
 `
 
 export default EstiloGlobal

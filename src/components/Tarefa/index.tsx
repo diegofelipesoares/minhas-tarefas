@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux"
 import  * as S from "./styles"
 import * as enums from '../../utils/enums/Tarefa'
 import { remover, editar } from "../../store/reducers/tarefas"
+import { BotaoSalvar } from "../../styles"
 
 //Tipagem
 type Props = {
@@ -58,7 +59,7 @@ const Tarefa =
         {estaEditando ?
           (
             <>
-              <S.BotaoSalvar
+              <BotaoSalvar
               onClick={()=> {dispatch(
                 editar({
                   descricao,
@@ -71,7 +72,7 @@ const Tarefa =
               setEstaEditando(false)
             }}
               >
-                Salvar</S.BotaoSalvar>
+                Salvar</BotaoSalvar>
               <S.BotaoCancelarRemover onClick={cancelarEdicao}>Cancelar</S.BotaoCancelarRemover>
             </>
           ):(
