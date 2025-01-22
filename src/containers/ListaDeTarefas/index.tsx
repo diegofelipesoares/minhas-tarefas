@@ -47,11 +47,6 @@ const ListaDeTarefas = () => {
           )}
          </Titulo>
         <ul>
-          <li>{termo}</li>
-          <li>{criterio}</li>
-          <li>{valor}</li>
-        </ul>
-        <ul>
           {fTarefas.map((t) => (
             <Lista key={t.titulo}>
               <Tarefa
