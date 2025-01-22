@@ -1,12 +1,13 @@
 //importações externas
-import { useState, useEffect } from "react"
+import { useState, useEffect, ChangeEvent } from "react"
 import { useDispatch } from "react-redux"
 
 //importação internas
 import  * as S from "./styles"
 import * as enums from '../../utils/enums/Tarefa'
-import { remover, editar } from "../../store/reducers/tarefas"
+import { remover, editar, alteraStatus } from "../../store/reducers/tarefas"
 import { BotaoSalvar } from "../../styles"
+import { Botao } from "../../styles"
 
 //Tipagem
 type Props = {
@@ -43,9 +44,30 @@ const Tarefa =
     setDescricao(descricaoOriginal)
   }
 
+  //Função chamada no checkbox
+  function alteraStatusTarefa(evento: ChangeEvent<HTMLInputElement>) {
+    //alterando o Estado "alteraStatus" em reducers/tarefa,
+    // enviando true o false do click do check para "finalizado"
+    // e o número do ID da tarefa que foi clicada.
+    dispatch(alteraStatus({
+      id,
+      finalizado: evento.target.checked
+    }))
+  }
+
+  //Definição do que aparece em cada card de tarefas.
   return(
     <S.Card>
-      <S.Titulo> {titulo} </S.Titulo>
+      <label htmlFor={titulo}>
+        <input type="checkbox" id={titulo}
+        onChange={alteraStatusTarefa}
+        checked={status === enums.Status.CONCLUIDA}
+        />
+        <S.Titulo>
+          {estaEditando && <em>Editando: </em>}
+          {titulo}
+        </S.Titulo>
+      </label>
       <S.Tag parametro='prioridade' recuperaPrioridades={prioridade}> {prioridade} </S.Tag>
       <S.Tag parametro='status' recuperaStatus={status}> {status} </S.Tag>
       <S.Descricao
@@ -77,7 +99,7 @@ const Tarefa =
             </>
           ):(
           <>
-            <S.Botao onClick={()=> setEstaEditando(true)}>Editar</S.Botao>
+            <Botao onClick={()=> setEstaEditando(true)}>Editar</Botao>
             <S.BotaoCancelarRemover onClick={() => dispatch(remover(id))}>Remover</S.BotaoCancelarRemover>
           </>
           )
